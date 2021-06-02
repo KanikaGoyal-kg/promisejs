@@ -24,14 +24,34 @@
                     }, 2000, indexData)
                 })
             }
-            pob1.then( (rollno) => {   //this is used for resolve case in promise statement
-                console.log(rollno);
-                getBiodata(rollno[1]).then( (data) => {
-                    console.log(data);
-                });
-            }) .catch( (error) => {
-                console.log(error);
-            })  //then is used to produce the promise
+            // pob1.then( (rollno) => {   //this is used for resolve case in promise statement
+            //     console.log(rollno);
+            //     getBiodata(rollno[1]).then( (data) => {
+            //         console.log(data);
+            //     });
+            // }) .catch( (error) => {
+            //     console.log(error);
+            // })  //then is used to produce the promise
+
+            //Or we can write the above commented code through async await
+
+            async function getData() {   //Here async will ask our function to return promise not the value
+               const rollnoData = await pob1; 
+               console.log(rollnoData);
+
+               const biodatatask = await getBiodata(rollnoData[1]);
+               console.log(biodatatask);
+
+               return biodatatask;
+            };
+            // const getname = getData();
+            // console.log(getname)
+
+            //or we can do
+
+            const getname = getData().then((myname) => {
+                console.log(myname);
+            })
         </script>
     </body>
 </html>
