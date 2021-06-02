@@ -51,7 +51,23 @@
 
             const getname = getData().then((myname) => {
                 console.log(myname);
-            })
+            });
+
+            //Error Handeling 
+            async function getData() {   //Here async will ask our function to return promise not the value
+
+            try{
+                const rollnoData = await pob1; 
+               console.log(rollnoData);
+
+               const biodatatask = await getBiodata(rollnoData[1]);
+               console.log(biodatatask);
+
+               return biodatatask; 
+            } catch(error) {
+                console.log(`The Error: ${error}`);
+            };
+        };
         </script>
     </body>
 </html>
